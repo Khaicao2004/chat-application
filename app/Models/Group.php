@@ -32,7 +32,7 @@ class Group extends Model
         $query = self::select(['groups.*', 'messages.message as last_message', 'messages.created_at as last_message_date'])
         ->join('group_users', 'group_users.group_id', 'groups.id')
         ->leftJoin('messages', 'messages.id', '=', 'groups.last_message_id')
-        ->where('group_users.group_id', '=', $user->id)
+        ->where('group_users.user_id', '=', $user->id)
         ->orderBy('messages.created_at', 'desc')
         ->orderBy('groups.name');
 
