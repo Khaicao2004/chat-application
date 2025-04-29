@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function groups()
     {
-        return $this->belongsToMany(Group::class, 'group_us ers');
+        return $this->belongsToMany(Group::class, 'group_users');
     }
 
     public static function getUsersExceptUser(User $user)
@@ -92,7 +92,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'last_message' => $this->last_message,
-            'last_message_date' => $this->last_message_date,
+            'last_message_date' => $this->last_message_date ? ($this->last_message_date . ' UTC') : null,
         ];
     }
 }
